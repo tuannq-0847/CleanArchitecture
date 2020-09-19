@@ -1,4 +1,4 @@
-package com.karleinstein.basemvvm
+package com.karleinstein.trainingrecyclerview
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +12,18 @@ import java.util.concurrent.Executors
 abstract class BaseRecyclerAdapter<Item>(
     callBack: DiffUtil.ItemCallback<Item>,
     private vararg val onClickItem: (item: Item) -> Unit
-) : ListAdapter<Item, BaseRecyclerAdapter<Item>.BaseViewHolder>(
+) : ListAdapter<Item, BaseViewHolder>(
     AsyncDifferConfig.Builder<Item>(callBack)
         .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
         .build()
 ) {
+
+//    /**
+//     * override this with new list to pass check "if (newList == mList)" in AsyncListDiffer
+//     */
+//    override fun submitList(list: List<Item>?) {
+//        super.submitList(ArrayList<Item>(list ?: listOf()))
+//    }
 
     abstract fun getLayoutRes(viewType: Int): Int
 
@@ -38,6 +45,6 @@ abstract class BaseRecyclerAdapter<Item>(
     }
 
     abstract fun onBind(itemView: View, item: Item, position: Int)
-
-    open inner class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }
+
+open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
