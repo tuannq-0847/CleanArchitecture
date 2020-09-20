@@ -1,4 +1,4 @@
-package com.karleinstein.trainingrecyclerview
+package com.karleinstein.basemvvm
 
 import android.view.LayoutInflater
 import android.view.View
