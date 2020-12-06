@@ -1,4 +1,4 @@
-package com.karleinstein.basemvvm
+package com.karleinstein.basemvvm.di
 
 import android.app.Application
 import android.content.Context

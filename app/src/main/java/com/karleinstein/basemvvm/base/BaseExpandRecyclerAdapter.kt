@@ -1,9 +1,10 @@
-package com.karleinstein.basemvvm
+package com.karleinstein.basemvvm.base
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import com.karleinstein.basemvvm.*
 
 abstract class BaseExpandRecyclerAdapter(
     callBack: DiffUtil.ItemCallback<ExpandableItem>

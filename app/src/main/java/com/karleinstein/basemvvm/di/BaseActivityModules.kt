@@ -1,4 +1,4 @@
-package com.karleinstein.basemvvm
+package com.karleinstein.basemvvm.di
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
