@@ -1,4 +1,4 @@
-package com.karleinstein.basemvvm
+package com.karleinstein.basemvvm.base
 
 import android.view.LayoutInflater
 import android.view.View
