@@ -4,7 +4,7 @@ import android.util.Log
 
 data class ExpandableData<CI, GI>(
     val groupItem: GroupItem<GI>,
-    val listChildItem: ListChildItem<CI>
+    val childItems: ChildItems<CI>
 )
 
 sealed class ExpandableItem
@@ -13,8 +13,7 @@ data class GroupItem<GI>(val input: GI) : ExpandableItem()
 
 data class ChildItem<CI>(val input: CI, var isExpand: Boolean) : ExpandableItem()
 
-data class ListChildItem<CI>(val input: List<CI>) : ExpandableItem()
-
+class ChildItems<CI>(vararg val input: CI) : ExpandableItem()
 
 fun <CI, GI> List<ExpandableData<CI, GI>>.convertToFlatList(): List<ExpandableItem> {
 
@@ -22,8 +21,8 @@ fun <CI, GI> List<ExpandableData<CI, GI>>.convertToFlatList(): List<ExpandableIt
 
     forEach { data ->
         result.add(data.groupItem)
-        if (data.listChildItem.input.isNotEmpty()) {
-            data.listChildItem.input.forEach {
+        if (data.childItems.input.isNotEmpty()) {
+            data.childItems.input.forEach {
                 result.add(ChildItem(it, false))
             }
         }
@@ -31,9 +30,18 @@ fun <CI, GI> List<ExpandableData<CI, GI>>.convertToFlatList(): List<ExpandableIt
     return result
 }
 
+fun List<ExpandableItem>.createNewInstance(): List<ExpandableItem> {
+
+    return map {
+        if (it is ChildItem<*>) {
+            ChildItem(it.input, it.isExpand)
+        } else GroupItem((it as GroupItem<*>).input)
+    }
+}
+
 fun List<ExpandableItem>.setStateChildView(isExpand: Boolean, position: Int): List<ExpandableItem> {
     Log.d("TAG", "setStateChildView: $isExpand")
-    val result = this
+    val result = this.toMutableList()
     var endPosition = position
     endPosition++
     if (endPosition >= this.size) {
@@ -41,7 +49,8 @@ fun List<ExpandableItem>.setStateChildView(isExpand: Boolean, position: Int): Li
     }
     while (result[endPosition] !is GroupItem<*>) {
         if (result[endPosition] is ChildItem<*>) {
-            (result[endPosition] as ChildItem<*>).isExpand = isExpand
+            result[endPosition] =
+                ChildItem(input = (result[endPosition] as ChildItem<*>).input, isExpand = isExpand)
         }
         endPosition++
         if (endPosition >= this.size) {
@@ -49,4 +58,21 @@ fun List<ExpandableItem>.setStateChildView(isExpand: Boolean, position: Int): Li
         }
     }
     return result
+}
+
+object ExpandableDiffUtil {
+
+    fun areItemsTheSame(oldData: ExpandableItem, newData: ExpandableItem): Boolean {
+        return if (oldData is ChildItem<*> && newData is ChildItem<*>) {
+            Log.d("areItemsTheSame", "old: $oldData new: $newData")
+            oldData.isExpand == newData.isExpand
+        } else false
+    }
+
+    fun areContentTheSame(oldData: ExpandableItem, newData: ExpandableItem): Boolean {
+        return if (oldData is ChildItem<*> && newData is ChildItem<*>) {
+            Log.d("areContentTheSame", "old: $oldData new: $newData")
+            oldData == newData
+        } else false
+    }
 }

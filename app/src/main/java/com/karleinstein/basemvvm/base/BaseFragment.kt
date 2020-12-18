@@ -2,38 +2,49 @@ package com.karleinstein.basemvvm.base
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 import androidx.navigation.navOptions
 import com.karleinstein.basemvvm.TransferArgument
 import dagger.android.support.AndroidSupportInjection
-import javax.inject.Inject
 
-abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
+abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId), BaseView {
 
-    abstract val layoutId: Int
-
-    abstract val viewModel: VM
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(layoutId, container, false)
-    }
+    override val viewModel: BaseViewModel? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if (viewModel == null) Log.d("BaseFragment:", "${this::class.simpleName} viewModel is null")
+        else {
+            viewModel!!.loadingEvent.observe(this, Observer {
+                if (!isLoadingInActivity)
+                    onHandleShowLoading(it)
+            })
+            viewModel!!.errorEvent.observe(this, Observer {
+                if (!isHandleErrorInActivity)
+                    onHandleError(it)
+            })
+        }
         setUpView()
         bindView()
+    }
+
+    override val isHandleErrorInActivity: Boolean = true
+
+    override val isLoadingInActivity: Boolean = true
+
+    open fun onHandleShowLoading(isShowLoading: Boolean) {
+        Log.d("loadingEvent", "loadingEvent: ${this::class.simpleName} $isShowLoading")
+    }
+
+    open fun onHandleError(throwable: Throwable) {
+        Log.d("errorEvent", "errorEvent: ${this::class.simpleName} $throwable")
     }
 
     override fun onAttach(context: Context) {
@@ -80,7 +91,7 @@ abstract class BaseFragment<VM : BaseViewModel> : Fragment() {
             }
         }
 
-    fun callBackOnBackPressed(){
+    fun callBackOnBackPressed() {
 
     }
 
