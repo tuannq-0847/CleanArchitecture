@@ -12,8 +12,4 @@ abstract class BaseApplication : Application(), HasAndroidInjector {
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     override fun androidInjector(): AndroidInjector<Any> = androidInjector
-
-    override fun onCreate() {
-        super.onCreate()
-    }
 }

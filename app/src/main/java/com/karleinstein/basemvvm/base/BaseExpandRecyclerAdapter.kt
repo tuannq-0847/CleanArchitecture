@@ -1,54 +1,43 @@
 package com.karleinstein.basemvvm.base
 
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import com.karleinstein.basemvvm.*
 
-abstract class BaseExpandRecyclerAdapter(
-    callBack: DiffUtil.ItemCallback<ExpandableItem>
-) : BaseRecyclerAdapter<ExpandableItem>(callBack) {
+abstract class BaseExpandRecyclerAdapter() : BaseRecyclerAdapter<ExpandableItem>() {
 
-    private var isExpand = false
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        return if (viewType == ExpandableType.GROUP) {
-            GroupViewHolder(
-                LayoutInflater.from(parent.context).inflate(getLayoutRes(viewType), parent, false)
-            ).apply { bindGroupFirstTime(this) }
-        } else ChildViewHolder(
-            LayoutInflater.from(parent.context).inflate(getLayoutRes(viewType), parent, false)
-        ).apply { bindChildFirstTime(this) }
-    }
-
-    protected open fun bindGroupFirstTime(baseViewHolder: BaseViewHolder) {
+    override fun bindFirstTime(baseViewHolder: BaseViewHolder) {
         baseViewHolder.itemView.setOnClickListener {
-            isExpand = !isExpand
-            submitList(currentList.setStateChildView(isExpand, baseViewHolder.adapterPosition))
+            getChildItemClicked(baseViewHolder)?.run {
+                submitList(
+                    currentList.setStateChildView(
+                        stateClickedHandler(
+                            !isExpand,
+                            baseViewHolder.absoluteAdapterPosition
+                        ),
+                        baseViewHolder.absoluteAdapterPosition
+                    )
+                )
+            }
         }
     }
 
-    protected open fun bindChildFirstTime(baseViewHolder: BaseViewHolder) {
-    }
-
-    override fun onBind(itemView: View, item: ExpandableItem, position: Int) {
+    override fun onBind(holder: BaseViewHolder, item: ExpandableItem, position: Int) {
         if (item is GroupItem<*>) {
-            onBindGroup(itemView, item)
-        } else onBindChild(itemView, item as ChildItem<*>)
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        val data = getItem(position)
-        return if (data is GroupItem<*>) ExpandableType.GROUP
-        else ExpandableType.CHILD
+            onBindGroup(holder.itemView, item)
+        } else onBindChild(holder.itemView, item as ChildItem<*>)
     }
 
     abstract fun onBindGroup(itemView: View, item: GroupItem<*>)
 
     abstract fun onBindChild(itemView: View, item: ChildItem<*>)
 
-    inner class ChildViewHolder(itemView: View) : BaseViewHolder(itemView)
-
-    class GroupViewHolder(itemView: View) : BaseViewHolder(itemView)
+    private fun getChildItemClicked(baseViewHolder: BaseViewHolder): ChildItem<*>? {
+        if (baseViewHolder.absoluteAdapterPosition <= -1) return null
+        val currentItem = currentList[baseViewHolder.absoluteAdapterPosition]
+        if (baseViewHolder.absoluteAdapterPosition + 1 >= currentList.size) return null
+        val nextItem = currentList[baseViewHolder.absoluteAdapterPosition + 1]
+        return if (currentItem is GroupItem<*> && nextItem is ChildItem<*>)
+            nextItem
+        else null
+    }
 }
