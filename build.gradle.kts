@@ -5,7 +5,8 @@ plugins {
 }
 
 buildscript {
-    val kotlin_version by extra("1.3.72")
+    val hiltVersion = "2.33-beta"
+    val kotlinVersion by extra("1.3.72")
     repositories {
         google()
         jcenter()
@@ -18,6 +19,7 @@ buildscript {
         // in the individual module build.gradle files
         classpath("com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5")
         classpath("org.jetbrains.dokka:dokka-gradle-plugin:0.10.1")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:$hiltVersion")
     }
 }
 

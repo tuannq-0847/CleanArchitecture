@@ -1,6 +1,5 @@
 package com.karleinstein.sample.ui
 
-import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import com.karleinstein.basemvvm.base.BaseRecyclerAdapter
@@ -23,7 +22,7 @@ class MainAdapter(
         }
     }
 
-    override fun calculateLayoutViewType(position: Int): Int {
+    override fun buildLayoutRes(position: Int): Int {
         return R.layout.item_test
     }
 

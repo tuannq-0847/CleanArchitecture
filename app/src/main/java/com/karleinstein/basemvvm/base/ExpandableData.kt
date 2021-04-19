@@ -4,7 +4,7 @@ import android.util.Log
 
 data class ExpandableData<CI, GI>(
     val groupItem: GroupItem<GI>,
-    val childItems: ChildItems<CI>
+    val childItems: ChildItems<CI> = ChildItems()
 )
 
 sealed class ExpandableItem
@@ -28,6 +28,14 @@ fun <CI, GI> List<ExpandableData<CI, GI>>.convertToFlatList(): List<ExpandableIt
         }
     }
     return result
+}
+
+fun <CI> ChildItem<*>.toChildData(): CI? {
+    return this.input as? CI
+}
+
+fun <GI> GroupItem<*>.toGroupData(): GI? {
+    return this.input as? GI
 }
 
 fun List<ExpandableItem>.createNewInstance(): List<ExpandableItem> {

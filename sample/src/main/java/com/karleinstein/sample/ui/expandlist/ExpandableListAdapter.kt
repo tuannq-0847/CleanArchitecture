@@ -1,38 +1,17 @@
 package com.karleinstein.sample.ui.expandlist
 
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import com.karleinstein.basemvvm.ExpandableType
 import com.karleinstein.basemvvm.base.BaseExpandRecyclerAdapter
 import com.karleinstein.basemvvm.base.ChildItem
-import com.karleinstein.basemvvm.base.ExpandableItem
-import com.karleinstein.basemvvm.base.GroupItem
 import com.karleinstein.sample.R
 import com.karleinstein.sample.model.ExpandableDataSample
 
-class ExpandableListAdapter() :
-    BaseExpandRecyclerAdapter() {
+class ExpandableListAdapter :
+    BaseExpandRecyclerAdapter<String,ExpandableDataSample>() {
 
-    override fun onBindGroup(itemView: View, item: GroupItem<*>) {
-        val tvTest = itemView.findViewById<TextView>(R.id.tv_test)
-        tvTest.text = item.input.toString()
-    }
-
-    override fun onBindChild(itemView: View, item: ChildItem<*>) {
-        if (item.input is ExpandableDataSample) {
-            itemView.visibility = if (item.isExpand) View.VISIBLE else View.GONE
-            val textExpandable = itemView.findViewById<TextView>(R.id.text_expandable)
-            val imageExpandable = itemView.findViewById<ImageView>(R.id.image_expandable)
-            textExpandable.text = (item.input as ExpandableDataSample).title
-            imageExpandable.setImageResource((item.input as ExpandableDataSample).imageSource)
-        }
-    }
-
-    override fun calculateLayoutViewType(position: Int): Int {
-        Log.d("TAG", "calculateLayoutViewType: ${currentList[position]}")
+    override fun buildLayoutRes(position: Int): Int {
         return when (currentList[position]) {
             is ChildItem<*> -> {
                 R.layout.item_expandable
@@ -40,6 +19,23 @@ class ExpandableListAdapter() :
             else -> {
                 R.layout.item_test
             }
+        }
+    }
+
+    override fun onBindGroup(itemView: View, item: String?) {
+        val tvTest = itemView.findViewById<TextView>(R.id.tv_test)
+        tvTest.text = item
+    }
+
+    override fun onBindChild(itemView: View, item: ExpandableDataSample?) {
+        itemView.visibility = if (isExpanded) View.VISIBLE else View.GONE
+        val textExpandable = itemView.findViewById<TextView>(R.id.text_expandable)
+        val imageExpandable = itemView.findViewById<ImageView>(R.id.image_expandable)
+        item?.let {
+            textExpandable.text = it.title
+            imageExpandable.setImageResource(
+                it.imageSource
+            )
         }
     }
 }

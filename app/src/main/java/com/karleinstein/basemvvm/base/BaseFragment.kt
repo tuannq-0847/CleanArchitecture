@@ -1,19 +1,17 @@
 package com.karleinstein.basemvvm.base
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.navigation.navOptions
 import com.karleinstein.basemvvm.TransferArgument
-import dagger.android.support.AndroidSupportInjection
+import com.karleinstein.basemvvm.data.transfer.DataTransfer
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId), BaseView {
 
     override val viewModel: BaseViewModel? = null
@@ -22,11 +20,11 @@ abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId), B
         super.onViewCreated(view, savedInstanceState)
         if (viewModel == null) Log.d("BaseFragment:", "${this::class.simpleName} viewModel is null")
         else {
-            viewModel!!.loadingEvent.observe(this, Observer {
+            viewModel!!.loadingEvent.observe(viewLifecycleOwner, {
                 if (!isLoadingInActivity)
                     onHandleShowLoading(it)
             })
-            viewModel!!.errorEvent.observe(this, Observer {
+            viewModel!!.errorEvent.observe(viewLifecycleOwner, {
                 if (!isHandleErrorInActivity)
                     onHandleError(it)
             })
@@ -47,11 +45,6 @@ abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId), B
         Log.d("errorEvent", "errorEvent: ${this::class.simpleName} $throwable")
     }
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         viewModelStore.clear()
@@ -62,13 +55,12 @@ abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId), B
     abstract fun setUpView()
 
     companion object {
-
-        inline fun <reified T : Fragment> newInstance(vararg params: Pair<String, Any>) =
-            T::class.java.newInstance().apply {
-                params.forEach {
+        fun <T : BaseFragment> newInstance(entity: T, vararg dataTransfer: DataTransfer) =
+            entity.apply {
+                dataTransfer.forEach {
                     TransferArgument.setArgument(
-                        it.first,
-                        it.second
+                        it.key,
+                        it.data
                     )
                 }
             }
