@@ -1,16 +1,19 @@
 package com.karleinstein.basemvvm
 
+import java.lang.ref.WeakReference
+
 object TransferArgument {
 
-    private val tranferDataMap = mutableMapOf<String, Any>()
+    private val transferDataMap = mutableMapOf<String, WeakReference<Any>>()
 
 
     fun <T> setArgument(key: String, data: T) {
-        tranferDataMap[key] = data as Any
+        transferDataMap[key] = WeakReference(data)
     }
 
 
-    fun getArgument(key: String): `Any`? {
-        return tranferDataMap[key] ?: throw Exception("null")
+    @Suppress("UNCHECKED_CAST")
+    fun <T> getArgument(key: String): T? {
+        return transferDataMap[key]?.get() as? T
     }
 }

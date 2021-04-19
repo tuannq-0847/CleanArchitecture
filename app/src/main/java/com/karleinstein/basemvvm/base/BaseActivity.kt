@@ -2,30 +2,16 @@ package com.karleinstein.basemvvm.base
 
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.viewbinding.ViewBinding
-import com.karleinstein.basemvvm.databinding.ActivityMainBinding
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasAndroidInjector
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector, BaseView {
-
-    @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Any>
-
-    override fun androidInjector(): AndroidInjector<Any> {
-        return androidInjector
-    }
+@AndroidEntryPoint
+abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     override val viewModel: BaseViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(viewBinding.root)
         setUpView()
@@ -44,6 +30,11 @@ abstract class BaseActivity : AppCompatActivity(), HasAndroidInjector, BaseView 
                     onHandleError(it)
             })
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAfterTransition()
     }
 
     override val isHandleErrorInActivity: Boolean = true

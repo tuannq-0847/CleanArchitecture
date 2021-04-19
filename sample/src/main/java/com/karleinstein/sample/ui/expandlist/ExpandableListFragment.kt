@@ -1,6 +1,9 @@
 package com.karleinstein.sample.ui.expandlist
 
+import com.karleinstein.basemvvm.TransferArgument
 import com.karleinstein.basemvvm.base.*
+import com.karleinstein.basemvvm.data.transfer.DataTransfer
+import com.karleinstein.basemvvm.extension.showToast
 import com.karleinstein.basemvvm.utils.viewBinding
 import com.karleinstein.sample.R
 import com.karleinstein.sample.databinding.ExpandableListFragmentBinding
@@ -9,21 +12,11 @@ import com.karleinstein.sample.model.ExpandableDataSample
 class ExpandableListFragment : BaseFragment(R.layout.expandable_list_fragment) {
 
     override fun bindView() {
-
-    }
-
-    override fun setUpView() {
         val adapter = ExpandableListAdapter()
         val expandableData =
             listOf(
                 ExpandableData(
-                    groupItem = GroupItem("group 1"),
-                    childItems = ChildItems(
-                        ExpandableDataSample(
-                            "child 1",
-                            R.drawable.ic_launcher_background
-                        )
-                    )
+                    groupItem = GroupItem("group 1")
                 ),
                 ExpandableData(
                     groupItem = GroupItem("group 2"),
@@ -46,6 +39,19 @@ class ExpandableListFragment : BaseFragment(R.layout.expandable_list_fragment) {
             )
         adapter.submitList(expandableData.convertToFlatList())
         viewBinding.recycleExpandable.adapter = adapter
+    }
+
+    override fun setUpView() {
+        val data = TransferArgument.getArgument<String>("name")
+        context?.showToast(data ?: "null")
+    }
+
+    companion object {
+
+        fun newInstance(vararg dataTransfer: DataTransfer) = newInstance(
+            entity = ExpandableListFragment(),
+            dataTransfer = dataTransfer
+        )
     }
 
     override val viewBinding by viewBinding(ExpandableListFragmentBinding::bind)

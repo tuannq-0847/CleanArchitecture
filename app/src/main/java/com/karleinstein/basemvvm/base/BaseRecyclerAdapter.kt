@@ -22,13 +22,6 @@ abstract class BaseRecyclerAdapter<Item : Any>(
 
     private val states = mutableMapOf<Item, Boolean>()
 
-//    /**
-//     * override this with new list to pass check "if (newList == mList)" in AsyncListDiffer
-//     */
-//    override fun submitList(list: List<Item>?) {
-//        super.submitList(ArrayList<Item>(list ?: listOf()))
-//    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return BaseViewHolder(
             LayoutInflater.from(parent.context)
@@ -48,14 +41,13 @@ abstract class BaseRecyclerAdapter<Item : Any>(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return calculateLayoutViewType(position)
+        return buildLayoutRes(position)
     }
 
     abstract fun onBind(holder: BaseViewHolder, item: Item, position: Int)
 
     @LayoutRes
-    abstract fun calculateLayoutViewType(position: Int): Int
-
+    abstract fun buildLayoutRes(position: Int): Int
 
     protected fun stateClickedHandler(isStateChanged: Boolean, position: Int): Boolean {
         val key = states.keys.toList()[position]

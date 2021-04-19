@@ -1,14 +1,5 @@
 package com.karleinstein.sample.ui
 
-import com.karleinstein.basemvvm.di.BaseApplication
-import com.karleinstein.sample.di.DaggerAppComponent
-import dagger.android.HasAndroidInjector
+import com.karleinstein.basemvvm.BaseApplication
 
-class App : BaseApplication(), HasAndroidInjector {
-
-    override fun onCreate() {
-        super.onCreate()
-        DaggerAppComponent.builder().application(this).build()
-            .inject(this)
-    }
-}
+class App : BaseApplication()
