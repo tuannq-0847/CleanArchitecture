@@ -13,7 +13,7 @@ plugins {
 
 android {
     compileSdkVersion(30)
-    buildToolsVersion("30.0.1")
+    buildToolsVersion("30.0.2")
     defaultConfig {
         minSdkVersion(23)
         targetSdkVersion(30)
@@ -42,20 +42,20 @@ android {
     }
 }
 
-tasks {
-    val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
-        outputFormat = "html"
-        outputDirectory = "$projectDir/../docs/"
-    }
-}
+//tasks {
+//    val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
+//        outputFormat = "html"
+//        outputDirectory = "$projectDir/../docs/"
+//    }
+//}
 
 apply(from = rootProject.file("gradle/publish.gradle"))
 
 tasks {
-    val dokkaJavadoc by creating(org.jetbrains.dokka.gradle.DokkaTask::class) {
-        outputFormat = "javadoc"
-        outputDirectory = "$buildDir/javadoc"
-    }
+//    val dokkaJavadoc by creating(org.jetbrains.dokka.gradle.DokkaTask::class) {
+//        outputFormat = "javadoc"
+//        outputDirectory = "$buildDir/javadoc"
+//    }
 
     val sourcesJar by creating(Jar::class) {
         archiveClassifier.set("sources")
@@ -65,7 +65,7 @@ tasks {
     val javadocJar by creating(Jar::class) {
         dependsOn.add(dokkaJavadoc)
         archiveClassifier.set("javadoc")
-        from(dokkaJavadoc.outputDirectory)
+//        from(dokkaJavadoc.outputDirectory)
     }
 }
 
@@ -76,24 +76,24 @@ artifacts {
 
 dependencies {
     val hiltVersion = "2.33-beta"
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.3.72")
-    implementation("androidx.core:core-ktx:1.3.1")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.31")
+    implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.1")
-    implementation("androidx.lifecycle:lifecycle-runtime:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-common-java8:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("androidx.lifecycle:lifecycle-runtime:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-common-java8:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     //hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    kapt("com.google.dagger:hilt-compiler:$hiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
     //navigation
-    implementation("androidx.navigation:navigation-fragment-ktx:2.3.0")
-    implementation("androidx.navigation:navigation-ui-ktx:2.3.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     //recyclerview
-    implementation("androidx.recyclerview:recyclerview:1.2.0-beta01")
-    testImplementation("junit:junit:4.12")
+    implementation("androidx.recyclerview:recyclerview:1.2.0")
+    testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.2")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.3.0")
 }
