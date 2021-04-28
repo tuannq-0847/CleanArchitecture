@@ -13,3 +13,7 @@ interface BaseView {
     val viewBinding: ViewBinding
 }
 
+interface BaseDialogView {
+
+    val viewBinding: ViewBinding
+}

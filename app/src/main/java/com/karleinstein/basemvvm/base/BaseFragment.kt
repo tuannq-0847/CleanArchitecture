@@ -9,9 +9,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.navOptions
 import com.karleinstein.basemvvm.TransferArgument
 import com.karleinstein.basemvvm.data.transfer.DataTransfer
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId), BaseView {
 
     override val viewModel: BaseViewModel? = null
