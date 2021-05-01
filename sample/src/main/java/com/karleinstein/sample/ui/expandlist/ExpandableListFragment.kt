@@ -4,11 +4,15 @@ import com.karleinstein.basemvvm.TransferArgument
 import com.karleinstein.basemvvm.base.*
 import com.karleinstein.basemvvm.data.transfer.DataTransfer
 import com.karleinstein.basemvvm.extension.showToast
+import com.karleinstein.basemvvm.utils.DialogUtils
 import com.karleinstein.basemvvm.utils.viewBinding
 import com.karleinstein.sample.R
 import com.karleinstein.sample.databinding.ExpandableListFragmentBinding
 import com.karleinstein.sample.model.ExpandableDataSample
+import com.karleinstein.sample.ui.dialog.ExampleDialog
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExpandableListFragment : BaseFragment(R.layout.expandable_list_fragment) {
 
     override fun bindView() {
@@ -44,6 +48,11 @@ class ExpandableListFragment : BaseFragment(R.layout.expandable_list_fragment) {
     override fun setUpView() {
         val data = TransferArgument.getArgument<String>("name")
         context?.showToast(data ?: "null")
+//        val a = ExampleDialog(requireContext())
+//        a.updateText("abc")
+//        DialogUtils.showDialog(a) {
+//
+//        }
     }
 
     companion object {
