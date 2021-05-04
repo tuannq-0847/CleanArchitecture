@@ -7,7 +7,7 @@ plugins {
     id("kotlin-kapt")
     id("org.jetbrains.dokka")
     id("maven-publish")
-//    id("com.jfrog.bintray")
+    id("com.jfrog.bintray")
     id("dagger.hilt.android.plugin")
 }
 
