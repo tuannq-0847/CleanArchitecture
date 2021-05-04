@@ -2,6 +2,7 @@
 
 plugins {
     kotlin("jvm").version("1.4.31")
+    maven
 }
 
 buildscript {
@@ -27,6 +28,7 @@ buildscript {
 
 
 allprojects {
+    group = "com.github.tuannq-0847"
     repositories {
         google()
         jcenter()
