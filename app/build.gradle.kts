@@ -7,13 +7,13 @@ plugins {
     id("kotlin-kapt")
     id("org.jetbrains.dokka")
     id("maven-publish")
-    id("com.jfrog.bintray")
-    id("dagger.hilt.android.plugin")
+//    id("com.jfrog.bintray")
+//    id("dagger.hilt.android.plugin")
 }
 
 android {
     compileSdkVersion(30)
-    buildToolsVersion("30.0.2")
+    buildToolsVersion("30.0.3")
     defaultConfig {
         minSdkVersion(23)
         targetSdkVersion(30)
@@ -75,7 +75,7 @@ artifacts {
 
 
 dependencies {
-    val hiltVersion = "2.33-beta"
+//    val hiltVersion = "2.33-beta"
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.32")
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.appcompat:appcompat:1.2.0")
@@ -85,9 +85,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-common-java8:2.3.1")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.3.1")
     //hilt
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+//    implementation("com.google.dagger:hilt-android:$hiltVersion")
+//    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+//    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
