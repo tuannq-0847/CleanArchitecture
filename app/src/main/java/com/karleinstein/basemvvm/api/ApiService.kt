@@ -2,6 +2,7 @@ package com.karleinstein.basemvvm.api
 
 import android.util.Log
 import com.karleinstein.basemvvm.data.model.ApiParameter
+import com.karleinstein.basemvvm.data.model.TimeoutApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,14 +16,18 @@ interface ApiService {
 
         inline fun <reified T : ApiService> create(
             baseURL: String,
+            timeoutApi: TimeoutApi = TimeoutApi(),
             vararg apiParameter: ApiParameter
         ): T {
             val logger = HttpLoggingInterceptor { Log.d("API", it) }
             logger.level = HttpLoggingInterceptor.Level.BASIC
             val okHttpClient = OkHttpClient.Builder()
-                .readTimeout(20L, TimeUnit.SECONDS)
-                .writeTimeout(20L, TimeUnit.SECONDS)
-                .connectTimeout(20L, TimeUnit.SECONDS)
+                .readTimeout(timeoutApi.readTimeout.timeout, timeoutApi.readTimeout.timeUnit)
+                .writeTimeout(timeoutApi.writeTimeout.timeout, timeoutApi.writeTimeout.timeUnit)
+                .connectTimeout(
+                    timeoutApi.connectTimeout.timeout,
+                    timeoutApi.connectTimeout.timeUnit
+                )
                 .addInterceptor(logger)
             okHttpClient.addInterceptor { chain ->
                 val original = chain.request()
