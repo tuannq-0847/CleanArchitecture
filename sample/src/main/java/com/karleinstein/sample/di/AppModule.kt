@@ -18,9 +18,11 @@ object AppModule {
     @Singleton
     @Provides
     fun provideApiServices(): MovieApi = ApiService.create(
-        "https://api.themoviedb.org/",
-        ApiParameter(key = "api_key", name = "1f54bd990f1cdfb230adb312546d765d"),
-        ApiParameter(key = "language", name = "en-US")
+        baseURL = "https://api.themoviedb.org/",
+        apiParameter = arrayOf(
+            ApiParameter(key = "api_key", name = "1f54bd990f1cdfb230adb312546d765d"),
+            ApiParameter(key = "language", name = "en-US")
+        )
     )
 
     @Singleton
@@ -28,5 +30,6 @@ object AppModule {
     fun provideRemoteDataSource(movieApi: MovieApi) = RemoteDataSource(movieApi)
 
     @Provides
-    fun provideDefaultRepository(remoteDataSource: RemoteDataSource) = DefaultRepository(remoteDataSource)
+    fun provideDefaultRepository(remoteDataSource: RemoteDataSource) =
+        DefaultRepository(remoteDataSource)
 }

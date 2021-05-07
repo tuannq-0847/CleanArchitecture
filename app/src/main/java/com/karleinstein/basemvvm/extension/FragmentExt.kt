@@ -9,7 +9,7 @@ fun FragmentManager.addFragment(
     isAddToBackStack: Boolean = false
 ) {
     val fragmentTransaction = beginTransaction().add(container, fragment)
-    if (isAddToBackStack) fragmentTransaction.addToBackStack(this.javaClass.simpleName).commit()
+    if (isAddToBackStack) fragmentTransaction.addToBackStack(fragment.javaClass.simpleName).commit()
     else fragmentTransaction.commit()
 }
 
@@ -19,6 +19,6 @@ fun FragmentManager.replaceFragment(
     isAddToBackStack: Boolean = false
 ) {
     val fragmentTransaction = beginTransaction().replace(container, fragment)
-    if (isAddToBackStack) fragmentTransaction.addToBackStack(this.javaClass.simpleName).commit()
+    if (isAddToBackStack) fragmentTransaction.addToBackStack(fragment.javaClass.simpleName).commit()
     else fragmentTransaction.commit()
 }

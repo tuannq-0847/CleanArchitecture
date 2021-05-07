@@ -30,11 +30,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         }
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finishAfterTransition()
-    }
-
     override val isHandleErrorInActivity: Boolean = true
 
     override val isLoadingInActivity: Boolean = true
