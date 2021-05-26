@@ -1,0 +1,3 @@
+rootProject.name = "CleanArchitecture"
+include ':presentation'
+include ':domain'
