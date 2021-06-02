@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 
-class ConnectivityImpl(private val context: Context): Connectivity {
+class ConnectivityImpl(private val context: Context) : Connectivity {
     override fun hasNetworkAccess(): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
