@@ -30,6 +30,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven(url = "https://dl.bintray.com/tuannq-0847/BaseMVVM")
+        maven(url = "https://jitpack.io")
     }
 }
