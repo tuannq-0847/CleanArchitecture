@@ -36,10 +36,15 @@ android {
 
 dependencies {
     def paging_version = "3.0.0"
+    def roomVersion = "2.1.0"
     implementation "androidx.paging:paging-runtime:$paging_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation(project(":domain"))
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    //database
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
     implementation 'com.github.tuannq-0847:retrofit_utils:0.0.1'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

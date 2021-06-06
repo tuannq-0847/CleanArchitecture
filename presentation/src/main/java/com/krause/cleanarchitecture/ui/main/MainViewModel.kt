@@ -21,24 +21,18 @@ class MainViewModel @Inject constructor(
 
     var memeResponse: MutableLiveData<List<Meme>> = MutableLiveData()
 
-    val flow = Pager(
-        // Configure how data is loaded by passing additional properties to
-        // PagingConfig, such as prefetchDistance.
-        PagingConfig(pageSize = 5)
-    ) {
-        memePagingSource
-    }.flow
-        .cachedIn(viewModelScope)
-
-//    fun getMemes() {
-//        viewModelScope.launch {
-//            val result = memeRepository.getMemes()
-//            if (result.isSuccess) {
-//                memeResponse.value = result.getOrNull()
-//            }
-//            if (result.isFailure) {
-//                errorEvent.value = result.exceptionOrNull()
-//            }
-//        }
-//    }
+    fun getMemes() {
+        viewModelScope.launch {
+            loadingEvent.value = true
+            val result = memeRepository.getMemes()
+            if (result.isSuccess) {
+                loadingEvent.value = false
+                memeResponse.value = result.getOrNull()
+            }
+            if (result.isFailure) {
+                loadingEvent.value = false
+                errorEvent.value = result.exceptionOrNull()
+            }
+        }
+    }
 }

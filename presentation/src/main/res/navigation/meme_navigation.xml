@@ -1,13 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/meme_navigation"
-    app:startDestination="@id/memeFragment">
+    app:startDestination="@id/meme_fragment">
 
     <fragment
-        android:id="@+id/memeFragment"
+        android:id="@+id/meme_fragment"
         android:name="com.krause.cleanarchitecture.ui.image.view.MemeFragment"
-        android:label="Blank"
-        tools:layout="@layout/fragment_meme" />
+        android:label="MemeFragment"
+        tools:layout="@layout/fragment_meme" >
+
+        <action
+            android:id="@+id/nav_to_image_viewer_fragment"
+            app:destination="@id/image_viewer_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/image_viewer_fragment"
+        android:name="com.krause.cleanarchitecture.ui.imageviewer.ImageViewerFragment"
+        android:label="ImageViewerFragment"
+        tools:layout="@layout/fragment_image_viewer">
+
+        <argument
+            android:name="url_meme"
+            app:argType="string" />
+    </fragment>
 </navigation>

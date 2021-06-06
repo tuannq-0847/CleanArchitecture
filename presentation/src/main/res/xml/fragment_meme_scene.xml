@@ -1,0 +1,44 @@
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/motion_layout">
+
+<!--    <Transition-->
+<!--        motion:constraintSetEnd="@+id/end"-->
+<!--        motion:constraintSetStart="@+id/start"-->
+<!--        motion:duration="1000"-->
+<!--        motion:motionInterpolator="linear">-->
+<!--        <OnSwipe-->
+<!--            motion:dragDirection="dragUp"-->
+<!--            motion:touchAnchorId="@id/recycler_meme"-->
+<!--            motion:touchAnchorSide="top" />-->
+<!--    </Transition>-->
+
+<!--    <ConstraintSet android:id="@+id/start">-->
+<!--        <Constraint-->
+<!--            android:id="@id/view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            motion:layout_constraintEnd_toEndOf="parent"-->
+<!--            motion:layout_constraintStart_toStartOf="parent"-->
+<!--            motion:layout_constraintTop_toTopOf="parent">-->
+<!--            <CustomAttribute-->
+<!--                motion:attributeName="BackgroundColor"-->
+<!--                motion:customColorValue="#D81B60" />-->
+<!--        </Constraint>-->
+<!--    </ConstraintSet>-->
+
+<!--    <ConstraintSet android:id="@+id/end">-->
+<!--        <Constraint-->
+<!--            android:id="@id/view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            motion:layout_constraintBottom_toBottomOf="parent"-->
+<!--            motion:layout_constraintEnd_toEndOf="parent"-->
+<!--            motion:layout_constraintStart_toStartOf="parent">-->
+<!--            <CustomAttribute-->
+<!--                motion:attributeName="BackgroundColor"-->
+<!--                motion:customColorValue="#9999FF" />-->
+<!--        </Constraint>-->
+<!--    </ConstraintSet>-->
+
+</MotionScene>

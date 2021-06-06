@@ -2,9 +2,11 @@ package com.krause.cleanarchitecture.ui.main
 
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.karleinstein.basemvvm.base.BaseActivity
 import com.karleinstein.basemvvm.utils.viewBinding
+import com.krause.cleanarchitecture.R
 import com.krause.cleanarchitecture.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,10 +17,10 @@ class MainActivity : BaseActivity() {
     override val viewModel: MainViewModel by viewModels()
 
     override fun bindView() {
-//        viewModel.getMemes()
+        viewModel.getMemes()
     }
 
     override fun setUpView() {
-
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
     }
 }

@@ -1,48 +1,43 @@
 package com.krause.cleanarchitecture.ui.image.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.karleinstein.basemvvm.base.BaseDiffUtil
+import com.karleinstein.basemvvm.base.BaseRecyclerAdapter
 import com.karleinstein.basemvvm.base.BaseViewHolder
 import com.krause.cleanarchitecture.R
 import com.krause.cleanarchitecture.databinding.LoadStateItemBinding
 import com.krause.domain.model.Meme
-import java.util.*
 
-class MemeAdapter :
-    PagingDataAdapter<Meme, BaseViewHolder>(BaseDiffUtil()) {
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): BaseViewHolder {
-        return BaseViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_meme, parent, false
-            )
-        )
+class MemeAdapter(private val onItemClickListener: (meme: Meme, view: View) -> Unit) :
+    BaseRecyclerAdapter<Meme>() {
+
+    override fun buildLayoutRes(position: Int): Int {
+        return R.layout.item_meme
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
-        val item = getItem(position)
-        // Note that item may be null. ViewHolder must support binding a
-        // null item as a placeholder.
+    override fun onBind(holder: BaseViewHolder, item: Meme, position: Int) {
         holder.itemView.run {
             val imageMeme = findViewById<ImageView>(R.id.image_meme)
             //call this to clear previous requests
-            Glide.with(context).load(item?.url)
-                .placeholder(R.drawable.ic_launcher_background)
+            Glide.with(context).load(item.url)
+                .placeholder(R.drawable.shape_gray_background)
                 .into(imageMeme)
-//            imageMeme.load(item?.url)
+        }
+    }
+
+    override fun bindFirstTime(baseViewHolder: BaseViewHolder) {
+        val imageMeme = baseViewHolder.itemView.findViewById<ImageView>(R.id.image_meme)
+        baseViewHolder.itemView.setOnClickListener {
+            imageMeme.transitionName = getItem(baseViewHolder.absoluteAdapterPosition).url
+            onItemClickListener(getItem(baseViewHolder.absoluteAdapterPosition), imageMeme)
         }
     }
 }

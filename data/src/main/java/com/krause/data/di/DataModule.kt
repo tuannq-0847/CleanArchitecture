@@ -31,8 +31,12 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideRepository(memeApi: MemeApi, connectivity: Connectivity): MemeRepository =
-        MemeRepositoryImpl(memeApi, connectivity)
+    fun provideRepository(
+        memeApi: MemeApi,
+        connectivity: Connectivity,
+        @ApplicationContext context: Context
+    ): MemeRepository =
+        MemeRepositoryImpl(memeApi, connectivity, context)
 
     @Singleton
     @Provides
