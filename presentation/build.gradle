@@ -42,6 +42,9 @@ android {
     buildFeatures {
         viewBinding true
     }
+    packagingOptions {
+        exclude 'META-INF/app_release.kotlin_module'
+    }
 }
 
 dependencies {
