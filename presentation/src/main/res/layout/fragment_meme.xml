@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_meme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_scrollFlags="scroll|enterAlways">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorSurface"
+            app:contentScrim="?attr/colorSurface"
+            app:expandedTitleGravity="top"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_discover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/opensans_extrabold"
+                android:paddingStart="32dp"
+                android:paddingTop="32dp"
+                android:paddingEnd="32dp"
+                android:paddingBottom="16dp"
+                android:text="Discover\nthe funniest memes \nfrom here."
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_collapseMode="parallax" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </FrameLayout>
+
+    <com.krause.cleanarchitecture.ui.animscroll.RecyclerScrollAnimBG
+        android:id="@+id/recycler_meme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="32dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
