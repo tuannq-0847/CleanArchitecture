@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "613145186740",
+    "project_id": "memedownloader-d33a6",
+    "storage_bucket": "memedownloader-d33a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613145186740:android:98a1857b352d0dcd00a2e1",
+        "android_client_info": {
+          "package_name": "com.krause.memedownloader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "613145186740-qd878c77g3hqebnu4hgdu5bn3b09oke3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.krause.memedownloader",
+            "certificate_hash": "033e28f67d7a00993dc49ed2c0b367cf36edc470"
+          }
+        },
+        {
+          "client_id": "613145186740-2kbssv44t33eh5m74iapvlefss0vhlei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJgh93vsbnYwKLaz1vDIWYziF6yb7q8ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "613145186740-2kbssv44t33eh5m74iapvlefss0vhlei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

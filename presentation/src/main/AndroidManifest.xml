@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.krause.cleanarchitecture">
+    package="com.krause.memedownloader">
 
     <application
-        android:name=".MemeApp"
+        android:name="com.krause.memedownloader.MemeApp"
         android:allowBackup="true"
         android:icon="@drawable/icons8_doge_48"
         android:label="@string/app_name"
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name="com.krause.memedownloader.ui.main.MainActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
