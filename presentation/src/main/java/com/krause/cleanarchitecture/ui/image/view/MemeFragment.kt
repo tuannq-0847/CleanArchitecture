@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.karleinstein.basemvvm.base.BaseFragment
+import com.karleinstein.basemvvm.utils.viewBinding
 import com.krause.cleanarchitecture.R
 import com.krause.cleanarchitecture.databinding.FragmentMemeBinding
 import com.krause.cleanarchitecture.ui.animscroll.StateAppBarShrink
