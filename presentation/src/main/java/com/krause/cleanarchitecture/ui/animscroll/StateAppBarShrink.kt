@@ -1,4 +1,4 @@
-package com.krause.memedownloader.ui.animscroll
+package com.krause.cleanarchitecture.ui.animscroll
 
 enum class StateAppBarShrink {
     COLLAPSED,

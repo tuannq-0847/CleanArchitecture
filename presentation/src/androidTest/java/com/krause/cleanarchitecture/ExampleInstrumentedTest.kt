@@ -1,4 +1,4 @@
-package com.krause.memedownloader
+package com.krause.cleanarchitecture
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

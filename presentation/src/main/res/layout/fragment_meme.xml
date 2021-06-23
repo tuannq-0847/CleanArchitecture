@@ -52,7 +52,7 @@
 
     </FrameLayout>
 
-    <com.krause.memedownloader.ui.animscroll.RecyclerScrollAnimBG
+    <com.krause.cleanarchitecture.ui.animscroll.RecyclerScrollAnimBG
         android:id="@+id/recycler_meme"
         android:layout_width="match_parent"
         android:overScrollMode="never"

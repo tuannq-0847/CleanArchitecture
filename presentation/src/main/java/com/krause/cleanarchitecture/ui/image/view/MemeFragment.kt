@@ -1,4 +1,4 @@
-package com.krause.memedownloader.ui.image.view
+package com.krause.cleanarchitecture.ui.image.view
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -12,15 +12,14 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.karleinstein.basemvvm.base.BaseFragment
-import com.karleinstein.basemvvm.utils.viewBinding
-import com.krause.memedownloader.R
-import com.krause.memedownloader.databinding.FragmentMemeBinding
-import com.krause.memedownloader.ui.animscroll.StateAppBarShrink
-import com.krause.memedownloader.ui.image.adapter.MemeAdapter
-import com.krause.memedownloader.ui.image.viewmodel.MemeViewModel
-import com.krause.memedownloader.ui.imageviewer.ImageViewerFragmentArgs
-import com.krause.memedownloader.ui.main.MainViewModel
-import com.krause.memedownloader.utils.SpacesItemDecoration
+import com.krause.cleanarchitecture.R
+import com.krause.cleanarchitecture.databinding.FragmentMemeBinding
+import com.krause.cleanarchitecture.ui.animscroll.StateAppBarShrink
+import com.krause.cleanarchitecture.ui.image.adapter.MemeAdapter
+import com.krause.cleanarchitecture.ui.image.viewmodel.MemeViewModel
+import com.krause.cleanarchitecture.ui.imageviewer.ImageViewerFragmentArgs
+import com.krause.cleanarchitecture.ui.main.MainViewModel
+import com.krause.cleanarchitecture.utils.SpacesItemDecoration
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import kotlin.math.abs

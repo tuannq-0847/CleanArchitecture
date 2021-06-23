@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/meme_fragment"
-        android:name="com.krause.memedownloader.ui.image.view.MemeFragment"
+        android:name="com.krause.cleanarchitecture.ui.image.view.MemeFragment"
         android:label="MemeFragment"
         tools:layout="@layout/fragment_meme" >
 
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/image_viewer_fragment"
-        android:name="com.krause.memedownloader.ui.imageviewer.ImageViewerFragment"
+        android:name="com.krause.cleanarchitecture.ui.imageviewer.ImageViewerFragment"
         android:label="ImageViewerFragment"
         tools:layout="@layout/fragment_image_viewer">
 

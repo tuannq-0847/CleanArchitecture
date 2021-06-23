@@ -1,4 +1,4 @@
-package com.krause.memedownloader.ui.image.adapter
+package com.krause.cleanarchitecture.ui.image.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.karleinstein.basemvvm.base.BaseRecyclerAdapter
 import com.karleinstein.basemvvm.base.BaseViewHolder
-import com.krause.memedownloader.R
-import com.krause.memedownloader.databinding.LoadStateItemBinding
+import com.krause.cleanarchitecture.R
+import com.krause.cleanarchitecture.databinding.LoadStateItemBinding
 import com.krause.domain.model.Meme
 
 class MemeAdapter(private val onItemClickListener: (meme: Meme, view: View) -> Unit) :

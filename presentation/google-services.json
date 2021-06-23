@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:613145186740:android:98a1857b352d0dcd00a2e1",
+        "mobilesdk_app_id": "1:613145186740:android:523c8acf8ebb7b0c00a2e1",
         "android_client_info": {
-          "package_name": "com.krause.memedownloader"
+          "package_name": "com.krause.cleanarchitecture"
         }
       },
       "oauth_client": [
         {
-          "client_id": "613145186740-qd878c77g3hqebnu4hgdu5bn3b09oke3.apps.googleusercontent.com",
+          "client_id": "613145186740-cnd5vujkoqnbiur0kptamcguivsfru16.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.krause.memedownloader",
+            "package_name": "com.krause.cleanarchitecture",
             "certificate_hash": "033e28f67d7a00993dc49ed2c0b367cf36edc470"
           }
         },

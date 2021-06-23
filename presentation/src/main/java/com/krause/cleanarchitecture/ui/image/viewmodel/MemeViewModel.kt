@@ -1,4 +1,4 @@
-package com.krause.memedownloader.ui.image.viewmodel
+package com.krause.cleanarchitecture.ui.image.viewmodel
 
 import com.karleinstein.basemvvm.base.BaseViewModel
 

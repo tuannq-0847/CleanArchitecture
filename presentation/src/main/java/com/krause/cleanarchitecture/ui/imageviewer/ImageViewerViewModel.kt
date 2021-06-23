@@ -1,4 +1,4 @@
-package com.krause.memedownloader.ui.imageviewer
+package com.krause.cleanarchitecture.ui.imageviewer
 
 import android.graphics.Bitmap
 import androidx.lifecycle.MutableLiveData

@@ -1,16 +1,14 @@
-package com.krause.memedownloader.ui.imageviewer
+package com.krause.cleanarchitecture.ui.imageviewer
 
 import android.os.Bundle
-import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
 import com.bumptech.glide.Glide
 import com.karleinstein.basemvvm.base.BaseFragment
 import com.karleinstein.basemvvm.extension.showToast
-import com.karleinstein.basemvvm.utils.viewBinding
-import com.krause.memedownloader.R
-import com.krause.memedownloader.databinding.FragmentImageViewerBinding
+import com.krause.cleanarchitecture.R
+import com.krause.cleanarchitecture.databinding.FragmentImageViewerBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.krause.memedownloader
+package com.krause.cleanarchitecture
 
 import org.junit.Test
 

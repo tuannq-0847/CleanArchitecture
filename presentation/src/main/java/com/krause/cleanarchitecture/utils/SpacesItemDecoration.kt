@@ -1,4 +1,4 @@
-package com.krause.memedownloader.utils
+package com.krause.cleanarchitecture.utils
 
 import android.graphics.Rect
 import android.view.View

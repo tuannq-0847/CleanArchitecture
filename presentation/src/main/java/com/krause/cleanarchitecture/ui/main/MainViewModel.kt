@@ -1,4 +1,4 @@
-package com.krause.memedownloader.ui.main
+package com.krause.cleanarchitecture.ui.main
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope

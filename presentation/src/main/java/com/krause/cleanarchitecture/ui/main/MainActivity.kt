@@ -1,11 +1,10 @@
-package com.krause.memedownloader.ui.main
+package com.krause.cleanarchitecture.ui.main
 
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.karleinstein.basemvvm.base.BaseActivity
-import com.karleinstein.basemvvm.utils.viewBinding
-import com.krause.memedownloader.R
-import com.krause.memedownloader.databinding.ActivityMainBinding
+import com.krause.cleanarchitecture.R
+import com.krause.cleanarchitecture.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
