@@ -7,33 +7,40 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
+import com.krause.data.database.dao.MemeDao
+import com.krause.data.database.model.convertToMemes
 import com.krause.data.networking.MemeApi
+import com.krause.data.networking.getData
 import com.krause.data.utils.Connectivity
 import com.krause.domain.model.Meme
 import com.krause.domain.repository.MemeRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
-import java.lang.NullPointerException
 import javax.inject.Inject
 
 class MemeRepositoryImpl @Inject constructor(
     private val memeApi: MemeApi,
+    private val memeDao: MemeDao,
     connectivity: Connectivity,
     private val context: Context
 ) : BaseRepository(connectivity), MemeRepository {
     override suspend fun getMemes(): Result<List<Meme>> {
-        return fetchData(
+        return fetchDataWithCached(
             dataProvider = {
-                try {
-                    Result.success(memeApi.getMemes())
-                } catch (throwable: Throwable) {
-                    Result.failure(throwable)
-                }
+                memeApi.getMemes().getData(
+                    cacheAction = {
+                        memeDao.cacheMemes(it.convertToMemeEntities())
+                    },
+                    fetchFromCacheAction = {
+                        memeDao.getCachedMemes().convertToMemes()
+                    }
+                )
+            },
+            cacheProvider = {
+                memeDao.getCachedMemes().convertToMemes()
             }
         )
     }

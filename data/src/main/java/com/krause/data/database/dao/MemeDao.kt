@@ -11,7 +11,8 @@ import com.krause.domain.model.Meme
 interface MemeDao {
 
     @Insert
-    suspend fun cacheMemes(memeEntity: MemeEntity)
+    @JvmSuppressWildcards
+    suspend fun cacheMemes(memeEntities: List<MemeEntity>)
 
     @Query("SELECT * FROM $MEME_TABLE_NAME")
     suspend fun getCachedMemes(): List<MemeEntity>
