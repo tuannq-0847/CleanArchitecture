@@ -71,6 +71,8 @@ dependencies {
     val paging_version = "3.0.0-alpha11"
     implementation("androidx.paging:paging-runtime-ktx:$paging_version")
     implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation(platform("com.google.firebase:firebase-bom:28.1.0"))
+    implementation("com.google.firebase:firebase-crashlytics")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.4.21")
     implementation("androidx.core:core-ktx:1.3.2")
     implementation("androidx.recyclerview:recyclerview:1.2.0-beta01")

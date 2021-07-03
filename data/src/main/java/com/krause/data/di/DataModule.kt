@@ -1,8 +1,9 @@
 package com.krause.data.di
 
 import android.content.Context
+import com.krause.data.database.MemeDatabase
+import com.krause.data.database.dao.MemeDao
 import com.krause.data.networking.MemeApi
-import com.krause.data.repository.MemePagingSource
 import com.krause.data.repository.MemeRepositoryImpl
 import com.krause.data.utils.Connectivity
 import com.krause.data.utils.ConnectivityImpl
@@ -13,7 +14,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ActivityScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -31,15 +31,21 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun provideRepository(
-        memeApi: MemeApi,
-        connectivity: Connectivity,
-        @ApplicationContext context: Context
-    ): MemeRepository =
-        MemeRepositoryImpl(memeApi, connectivity, context)
+    fun provideMemeDao(@ApplicationContext context: Context): MemeDao =
+        MemeDatabase.getDatabase(context).memeDao()
 
     @Singleton
     @Provides
-    fun provideMemePagingSource(memeApi: MemeApi): MemePagingSource =
-        MemePagingSource(memeApi)
+    fun provideRepository(
+        memeApi: MemeApi,
+        memeDao: MemeDao,
+        connectivity: Connectivity,
+        @ApplicationContext context: Context
+    ): MemeRepository =
+        MemeRepositoryImpl(memeApi, memeDao, connectivity, context)
+
+//    @Singleton
+//    @Provides
+//    fun provideMemePagingSource(memeApi: MemeApi): MemePagingSource =
+//        MemePagingSource(memeApi)
 }
