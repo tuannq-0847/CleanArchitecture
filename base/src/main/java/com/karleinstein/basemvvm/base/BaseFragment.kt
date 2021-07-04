@@ -81,7 +81,7 @@ abstract class BaseFragment(contentLayoutId: Int) : Fragment(contentLayoutId), B
             }
         }
 
-    fun callBackOnBackPressed() {
+    open fun callBackOnBackPressed() {
 
     }
 

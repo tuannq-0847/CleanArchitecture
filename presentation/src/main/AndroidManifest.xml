@@ -3,12 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.krause.cleanarchitecture">
 
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:name="com.krause.cleanarchitecture.MemeApp"
         android:allowBackup="true"
-        android:icon="@drawable/icons8_doge_48"
+        android:icon="@drawable/pepe"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icons8_doge_48"
+        android:roundIcon="@drawable/pepe"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity

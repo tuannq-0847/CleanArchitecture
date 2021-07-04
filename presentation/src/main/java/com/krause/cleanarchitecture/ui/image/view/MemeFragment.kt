@@ -35,12 +35,6 @@ class MemeFragment : BaseFragment(R.layout.fragment_meme), AppBarLayout.OnOffset
     private val memeViewModel by viewModels<MemeViewModel>()
     private var maxVerticalOffset = 0
 
-    override val isLoadingInActivity: Boolean
-        get() = false
-
-    override val isHandleErrorInActivity: Boolean
-        get() = false
-
     override fun onHandleShowLoading(isShowLoading: Boolean) {
         super.onHandleShowLoading(isShowLoading)
         Log.d("HandleShowLoading", "onHandleShowLoading: isShowLoading: $isShowLoading ")
