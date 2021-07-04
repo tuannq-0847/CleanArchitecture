@@ -14,7 +14,7 @@ android {
         applicationId "com.krause.cleanarchitecture"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 3
+        versionCode 4
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -71,6 +71,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":app"))
     implementation(project(":base"))
+    implementation(project(":FastPermissions"))
     implementation "com.google.dagger:hilt-android:$hilt_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.3'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
@@ -80,6 +81,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.3.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+//    implementation 'com.github.tuannq-0847:FastPermissions:0.1.10'
 //    implementation 'com.github.tuannq-0847:BaseMVVM:0.0.2-03'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
