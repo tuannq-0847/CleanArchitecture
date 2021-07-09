@@ -1,1 +1,3 @@
-
+[submodule "FastPermissions"]
+        path = FastPermissions
+        url = https://github.com/tuannq-0847/FastPermissions.git

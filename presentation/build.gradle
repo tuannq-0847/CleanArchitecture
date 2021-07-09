@@ -4,6 +4,8 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -14,7 +16,7 @@ android {
         applicationId "com.krause.cleanarchitecture"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 4
+        versionCode 6
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -45,15 +47,19 @@ android {
     packagingOptions {
         exclude 'META-INF/app_release.kotlin_module'
     }
+    ext {
+        enableCrashlytics = true
+    }
 }
 
 dependencies {
     def nav_version = "2.3.5"
     def paging_version = "3.0.0"
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:28.1.0')
-    implementation 'com.google.firebase:firebase-crashlytics'
-//    implementation 'com.google.firebase:firebase-analytics'
+//    implementation platform('com.google.firebase:firebase-bom:28.2.0')
+//    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+//    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'io.sentry:sentry-android:5.0.1'
     implementation "androidx.paging:paging-runtime:$paging_version"
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
     implementation 'com.google.android.material:material:1.0.0'

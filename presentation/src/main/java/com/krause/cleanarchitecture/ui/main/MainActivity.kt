@@ -7,6 +7,7 @@ import com.karleinstein.basemvvm.utils.viewBinding
 import com.krause.cleanarchitecture.R
 import com.krause.cleanarchitecture.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import io.sentry.Sentry
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
@@ -19,6 +20,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setUpView() {
+//        Sentry.captureMessage("zzzz")
         window.statusBarColor = ContextCompat.getColor(this, R.color.black)
     }
 }
