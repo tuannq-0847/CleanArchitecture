@@ -54,7 +54,6 @@ class RecyclerScrollAnimBG(context: Context, attrs: AttributeSet?) : RecyclerVie
         this.background = shape
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onScrollStateChanged(state: Int) {
         super.onScrollStateChanged(state)
 //        handleAppBarShrinkWhenScrolling()
@@ -152,7 +151,6 @@ class RecyclerScrollAnimBG(context: Context, attrs: AttributeSet?) : RecyclerVie
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     private fun handleAppBarShrinkWhenScrolling(event: MotionEvent? = null) {
         val job = CoroutineScope(Dispatchers.Main).launch {
             stateAppBarShrink.collectLatest {
@@ -208,22 +206,22 @@ class RecyclerScrollAnimBG(context: Context, attrs: AttributeSet?) : RecyclerVie
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onMotionEventListener(event: MotionEvent) {
         Log.d("TAG", "onMotionEventListener: event action: ${event.action}")
         handleAppBarShrinkWhenScrolling(event)
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     private fun isRadiusDefault(): Boolean {
-        return if (shape.cornerRadii == null) {
-            false
-        } else (shape.cornerRadii?.get(0) == 0F || shape.cornerRadii?.get(1) == 0F
-                || shape.cornerRadii?.get(2) == 0F || shape.cornerRadii?.get(3) == 0F
-                )
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+            if (shape.cornerRadii == null) {
+                false
+            } else (shape.cornerRadii?.get(0) == 0F || shape.cornerRadii?.get(1) == 0F
+                    || shape.cornerRadii?.get(2) == 0F || shape.cornerRadii?.get(3) == 0F
+                    )
+        }
+        else true
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onScrollingListener(currentValue: Float, event: MotionEvent) {
         this.background = shape
         rawValue = currentValue

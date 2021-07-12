@@ -16,8 +16,8 @@ android {
         applicationId "com.krause.cleanarchitecture"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 6
-        versionName "1.0"
+        versionCode 8
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -60,7 +60,7 @@ dependencies {
 //    implementation 'com.google.firebase:firebase-crashlytics-ktx'
 //    implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'io.sentry:sentry-android:5.0.1'
-    implementation "androidx.paging:paging-runtime:$paging_version"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
