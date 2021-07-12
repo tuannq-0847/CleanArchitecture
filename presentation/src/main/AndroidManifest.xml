@@ -3,14 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.krause.cleanarchitecture">
 
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name="com.krause.cleanarchitecture.MemeApp"
         android:allowBackup="true"
-        android:icon="@drawable/icons8_doge_48"
+        android:icon="@drawable/pepe"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icons8_doge_48"
+        android:roundIcon="@drawable/pepe"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+        <meta-data android:name="io.sentry.dsn" android:value="https://f34414708b35408e8d77614eb2fbbda3@o915944.ingest.sentry.io/5856773" />
         <activity
             android:name="com.krause.cleanarchitecture.ui.main.MainActivity"
             android:screenOrientation="portrait"

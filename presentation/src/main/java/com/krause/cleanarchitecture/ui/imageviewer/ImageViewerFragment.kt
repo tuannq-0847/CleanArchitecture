@@ -1,5 +1,6 @@
 package com.krause.cleanarchitecture.ui.imageviewer
 
+import android.Manifest
 import android.os.Bundle
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.viewModels
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.karleinstein.basemvvm.base.BaseFragment
 import com.karleinstein.basemvvm.extension.showToast
 import com.karleinstein.basemvvm.utils.viewBinding
+import com.karleinstein.fastpermissions.FastPermission
 import com.krause.cleanarchitecture.R
 import com.krause.cleanarchitecture.databinding.FragmentImageViewerBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +29,31 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_viewer) {
         }
         Glide.with(this).load(R.drawable.icons8_download).into(viewBinding.imageDownload)
         viewBinding.imageDownload.setOnClickListener {
-            viewModel.saveImage(viewBinding.imageMeme.drawable.toBitmap())
+            FastPermission.check(
+                requireActivity(),
+                mutableListOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                object : FastPermission.PermissionsListener {
+                    override fun onGranted() {
+                        viewModel.saveImage(viewBinding.imageMeme.drawable.toBitmap())
+                    }
+
+                    override fun onPermissionDeniedForever(deniedPermissionsForever: List<String>) {
+                        context?.showToast("You must enable permission write external storage to use this feature")
+                    }
+
+                    override fun onPermissionDenied(deniedPermissions: List<String>) {
+                        FastPermission.showDialogExplain(
+                            requireActivity(),
+                            "Warning!!!",
+                            "You must enable permission write external storage to use this feature",
+                            object : FastPermission.DialogExplainListener {
+                                override fun onAllowClicked() {
+
+                                }
+                            }
+                        )
+                    }
+                })
         }
         viewModel.isSaveSuccessful.observe(this, {
             context?.showToast("Save image successfully")
@@ -41,8 +67,12 @@ class ImageViewerFragment : BaseFragment(R.layout.fragment_image_viewer) {
     }
 
     override fun setUpView() {
-
+//        assignOnBackPressed(this)
     }
+
+//    override fun callBackOnBackPressed() {
+//        super.callBackOnBackPressed()
+//    }
 
     override val viewBinding: FragmentImageViewerBinding by viewBinding(FragmentImageViewerBinding::bind)
 }

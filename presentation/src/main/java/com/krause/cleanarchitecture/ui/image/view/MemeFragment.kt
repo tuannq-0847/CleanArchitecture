@@ -1,8 +1,11 @@
 package com.krause.cleanarchitecture.ui.image.view
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -34,12 +37,6 @@ class MemeFragment : BaseFragment(R.layout.fragment_meme), AppBarLayout.OnOffset
     private val mainViewModel by activityViewModels<MainViewModel>()
     private val memeViewModel by viewModels<MemeViewModel>()
     private var maxVerticalOffset = 0
-
-    override val isLoadingInActivity: Boolean
-        get() = false
-
-    override val isHandleErrorInActivity: Boolean
-        get() = false
 
     override fun onHandleShowLoading(isShowLoading: Boolean) {
         super.onHandleShowLoading(isShowLoading)

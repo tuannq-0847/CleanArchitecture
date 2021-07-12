@@ -2,11 +2,12 @@ package com.krause.data.database.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.krause.data.database.MEME_TABLE_NAME
+import com.krause.data.MEME_TABLE_NAME
 import com.krause.domain.model.Meme
 
-@Entity(tableName = MEME_TABLE_NAME)
+@Entity(tableName = MEME_TABLE_NAME, indices = [Index(value = ["url"], unique = true)])
 class MemeEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int,

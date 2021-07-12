@@ -4,3 +4,7 @@ include ':domain'
 include ':data'
 include ':app'
 include ':base'
+//include ':fast-permissions'
+
+include ':FastPermissions'
+project(':FastPermissions').projectDir = new File(rootProject.projectDir, 'FastPermissions/fastpermissions')
