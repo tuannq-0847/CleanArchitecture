@@ -219,7 +219,7 @@ class RecyclerScrollAnimBG(context: Context, attrs: AttributeSet?) : RecyclerVie
                     || shape.cornerRadii?.get(2) == 0F || shape.cornerRadii?.get(3) == 0F
                     )
         }
-        else true
+        else false
     }
 
     override fun onScrollingListener(currentValue: Float, event: MotionEvent) {
